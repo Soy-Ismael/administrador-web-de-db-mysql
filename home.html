@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <title>Notas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="body">
+    <div class="container">
+        <header class="header">
+            <h1 class="header__title">Notas</h1>
+            <nav class="nav">
+                <i class="fa-solid fa-user-plus hide" id="addUser"></i>
+            </nav>
+            <div class="add__user" id="addUserModal">
+                <div class="form__container">
+                    <i class="fa-solid fa-xmark" id="exitAddUserModal"></i>
+                    <h2 class="login__title">Añadir Usuario</h2>
+                    <form class="add__user__form" id="addUserForm" method="post">
+                        <input type="text" name="name" placeholder="Nombre" class="login__input add__user__input">
+                        <input type="text" name="last_name" placeholder="Apellido" class="login__input add__user__input">
+                        <input type="text" name="user" placeholder="Usuario" class="login__input add__user__input">
+                        <input type="password" name="password" placeholder="Contraseña" class="login__input add__user__input">
+                        <!-- <input type="text" name="role" placeholder="rol" class="login__input add__user__input"> -->
+                        <label for="role" class="label__role">Permisos
+                            <select name="role" class="role" id="role">
+                                <option value="general" class="login__input">General</option>
+                                <option value="admin" class="login__input">Admin</option>
+                            </select>
+                        </label>
+                        <input type="submit" value="Añadir" class="login__submit add__user__submit">
+                    </form>
+                </div>
+            </div>
+            <div class="thinkings">
+                <form method="POST" class="form" id="form">
+                    <textarea name="thinking" id="thinking" placeholder="I would like to share..."
+                        class="thinkings__input"></textarea>
+                    <input type="submit" value="Post" class="thinking__submit" id="submitButton">
+                </form>
+            </div>
+        </header>
+        <main class="main" id="main">
+            <!-- <div class="think__container">
+                <div class="data">
+                    <h5 class="author" data-author="Xaviel">Xaviel</h5>
+                    <h6 class="date" data-date="25-12-2023">25-12-2023</h6>
+                </div>
+                <div class="think">
+                    <p class="paragraph">Yo creo que todos estamos más sucios de lo que aparentamos</p>
+                </div>
+            </div>
+            <div class="think__container">
+                <div class="data">
+                    <h5 class="author" data-author="Jairon">Jairon</h5>
+                    <h6 class="date" data-date="12-4-2023">12-4-2023</h6>
+                </div>
+                <div class="think">
+                    <p class="paragraph">Uff, ¡qué desastre son los juegos hoy en día! Es increíble lo bajo que ha caído la industria del entretenimiento. Los desarrolladores solo piensan en sacar dinero con microtransacciones abusivas y contenido a medias que luego venden como
+                    DLC. La jugabilidad es repetitiva y aburrida, los gráficos son mediocres a pesar de requerir equipos carísimos, y ni
+                    hablar de las comunidades tóxicas llenas de niños malcriados. Los servidores siempre están caídos o llenos de lag, y
+                    cuando por fin logras jugar, te encuentras con tramposos por todos lados. ¿Y qué me dicen de las actualizaciones
+                    interminables que ocupan todo el espacio en disco? Para colmo, las historias son predecibles y los personajes son planos
+                    y sin carisma. Francamente, extraño los buenos tiempos cuando los juegos eran divertidos y completos desde el principio.</p>
+                </div>
+            </div>
+            <div class="think__container">
+                <div class="data">
+                                <h5 class="author" data-author="Jared">Jared</h5>
+                    <h6 class="date" data-date="23-3-2023">23-3-2023</h6>
+                </div>
+                <div class="think">
+                    <p class="paragraph">Man yo estoy harto de esta situación ya, voy a pelear con Dereck</p>
+                </div>
+            </div> -->
+        </main>
+        <footer class="footer">
+            <p class="footer__text">Notes © 2024 by Ismael is licensed under FREE · enjoy</p>
+        </footer>
+    </div>
+    <script src="https://kit.fontawesome.com/ebc8007ed3.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>    
+</body>
+</html>
