@@ -5,7 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $author = htmlspecialchars(trim($data['author'] ?? ''));
     $thinking = htmlspecialchars(trim($data['thinking'] ?? ''));
-    $date_time = date('Y-m-d h:i:s');
+    $date_time = date('Y-m-d H:i:s');
+    // DATE_FORMAT(date, '%Y-%m-%d %h:%i:%s %p') de esta forma se recuperan los datos con formato de 12 horas y con am y pm, si se le añade %a devuelve el dia de la semana, es decir, mon, tue, wed, thu, fri...
 
     if (!empty($author) && !empty($thinking)) {
         require_once 'conection.php';

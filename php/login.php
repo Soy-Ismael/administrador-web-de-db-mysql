@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($user) && !empty($password)) {
         require_once 'conection.php';
 
-        $stmt = $db->prepare("SELECT `password`, `role` FROM `credentials` WHERE `user` = ?");
+        $stmt = $db->prepare("SELECT `password`, `role`, `id` FROM `credentials` WHERE `user` = ?");
         $stmt->bind_param("s", $user);
         $stmt->execute();
-        $stmt->bind_result($hashed_password, $role);
+        $stmt->bind_result($hashed_password, $role, $id);
         $stmt->fetch();
 
         if (password_verify($password, $hashed_password)) {
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'ok' => true,
                 "code" => 200,
                 "message" => "Login successful",
-                "data" => ["user" => $user, "role" => $role],
+                "data" => ["user" => $user, "role" => $role, "id" => $id],
                 'timestamp' => date('c'),
                 "errors" => null
             ];

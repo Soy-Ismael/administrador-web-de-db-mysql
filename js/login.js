@@ -19,13 +19,13 @@ form.addEventListener('submit', e => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        // console.log(data);
         if (data.ok){
             // Guardando algunas variables para que la página de home las pueda utilizar más tarde
             sessionStorage.setItem("user", JSON.stringify({
                 author: data.data.user,
                 role: data.data.role,
-                visited: true
+                id: data.data.id,
             }));
             if(location.href.endsWith('/')){
                 location.href = `${localStorage.href}home.html`;

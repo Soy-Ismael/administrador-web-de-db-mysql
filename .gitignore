@@ -1,4 +1,6 @@
 python
+/php/conection.php
+*conection.php
 
 # Logs
 logs
@@ -130,3 +132,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+/php/conection.php

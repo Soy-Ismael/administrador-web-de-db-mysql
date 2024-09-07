@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = htmlspecialchars(trim($data['role'] ?? ''));
     $permissions = htmlspecialchars(trim($data['permissions'] ?? ''));
     // $date_time = htmlspecialchars(trim($data['datetime'] ?? ''));
-    $date_time = date('Y-m-d h:i:s');
+    $date_time = date('Y-m-d H:i:s');
 
     if ($permissions == "admin"){
         if (!empty($user) && !empty($password)) {

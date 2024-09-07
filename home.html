@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,11 +26,12 @@
     <meta name="theme-color" content="#ffffff">
     <title>Notas</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body class="body">
     <div class="container">
         <header class="header">
-            <h1 class="header__title">Notas</h1>
+            <h1 class="header__title">Share your thoughts</h1>
             <nav class="nav">
                 <i class="fa-solid fa-user-plus hide" id="addUser"></i>
             </nav>
@@ -57,21 +58,35 @@
             <div class="thinkings">
                 <form method="POST" class="form" id="form">
                     <textarea name="thinking" id="thinking" placeholder="I would like to share..."
-                        class="thinkings__input"></textarea>
+                    class="thinkings__input"></textarea>
                     <input type="submit" value="Post" class="thinking__submit" id="submitButton">
                 </form>
             </div>
+            <h2 class="header__title sub__title">Friends' Posts</h2>
         </header>
         <main class="main" id="main">
-            <!-- <div class="think__container">
+            <div class="think__container">
                 <div class="data">
-                    <h5 class="author" data-author="Xaviel">Xaviel</h5>
+                    <div class="icon__container">
+                        <div class="user__icon">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <div class="colum">
+                            <h5 class="writer" data-author="Xaviel">Xaviel</h5>
+                            <h6 class="writer" data-author="Xaviel">12:25</h6>
+                        </div>
+                    </div>
                     <h6 class="date" data-date="25-12-2023">25-12-2023</h6>
                 </div>
                 <div class="think">
                     <p class="paragraph">Yo creo que todos estamos más sucios de lo que aparentamos</p>
+                    <div class="options">
+                        <i class="fa-solid fa-pen" title="Edit message"></i>
+                        <i class="fa-solid fa-trash-can" title="Delete message"></i>
+                    </div>
                 </div>
             </div>
+            <!--
             <div class="think__container">
                 <div class="data">
                     <h5 class="author" data-author="Jairon">Jairon</h5>
@@ -97,10 +112,20 @@
             </div> -->
         </main>
         <footer class="footer">
-            <p class="footer__text">Notes © 2024 by Ismael is licensed under FREE · enjoy</p>
+            <!-- <p class="footer__text">Notes © 2024 by Ismael is licensed under FREE · enjoy</p> -->
         </footer>
     </div>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="https://kit.fontawesome.com/ebc8007ed3.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 750,
+            easing: 'ease-out',
+            once: false,
+            mirror: false,
+        });
+    </script>
     <script src="js/main.js"></script>    
 </body>
 </html>
