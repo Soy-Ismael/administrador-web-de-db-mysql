@@ -36,7 +36,6 @@ const loadThinks = (oneLine=false) => {
     // PD ? es para incluir parámetros, si son más de uno se separan con &
     const params = new URLSearchParams({
         oneline: oneLine,
-        id: userData.id,
     });
 
     // fetch(`https://homis.duckdns.org/admin-db/php/thinkings?oneline=true`)
@@ -68,7 +67,7 @@ const loadThinks = (oneLine=false) => {
                 const editIcon = document.createElement('I');
                 const deleteIcon = document.createElement('I');
                 const authorTitle = document.createElement("H5");
-                const dateTitle = document.createElement("P"); //h6
+                const dateTitle = document.createElement("H6"); //h6
                 const dateHour = document.createElement("P"); //h6
                 const paragraph = document.createElement("P");
                 const userIcon = document.createElement('I')
@@ -81,15 +80,17 @@ const loadThinks = (oneLine=false) => {
                 divColum.classList.add('colum');
                 authorTitle.classList.add("writer");
                 dateHour.classList.add('writer', 'date');
-                dateTitle.classList.add('writer');
+                // dateTitle.classList.add('writer');
+                dateTitle.classList.add('date');
                 paragraph.classList.add("paragraph");
                 // userIcon.classList.add("fa-regular", "fa-user"); // Same thing
                 userIcon.classList.add(...["fa-regular", "fa-user"]);
-                divOptions.classList.add('options')
+                // divOptions.classList.add('options')
                 editIcon.classList.add('fa-solid', 'fa-pen');
                 deleteIcon.classList.add('fa-solid', 'fa-trash-can')
                 
                 divContainer.setAttribute('data-aos','fade-down');
+                divUserIcon.style.backgroundColor = element.user_color;
                 // editIcon.setAttribute('title', 'Edit message');
                 editIcon.title = 'Edit message';
                 // editIcon.setAttribute('data-purpose', 'edit');
@@ -98,6 +99,7 @@ const loadThinks = (oneLine=false) => {
                 deleteIcon.title = 'Delete message';
                 // deleteIcon.setAttribute('data-purpose', 'delete')
                 deleteIcon.dataset.purpose = 'delete'
+                divOptions.dataset.permissions = userData.author == author ? "true" : "false";
 
                 authorTitle.textContent = author;
                 dateTitle.textContent = date;
@@ -130,7 +132,7 @@ loadThinks()
 // Formulario para enviar idea
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const path = location.href.replace("home.html", "php/db.php");
+    const path = location.href.replace(".html", "").replace("home", "php/db.php");
     fetch(path, {
         method: "POST",
         body: JSON.stringify({
@@ -151,6 +153,7 @@ form.addEventListener('submit', (e) => {
         }
     })
     .catch(err => console.log(err))
+    .finally(think.value = '')
 })
 
 addUserButton.addEventListener("click", (e) => {
@@ -168,7 +171,7 @@ exitModal.addEventListener("click", (e) => {
 // Formulario para agregar usuarios
 addUserForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const path = location.href.replace("home.html", "php/create.php");
+    const path = location.href.replace(".html", "").replace("home", "php/create.php");
     
     fetch(path, {
         method: "POST",
@@ -186,7 +189,7 @@ addUserForm.addEventListener('submit', (e) => {
     })
     .then((res) => res.json())
     .then((data) => {
-        // console.log(data);
+        console.log(data);
     })
     .catch((err) => console.log(err))
     .finally(() => {
@@ -198,7 +201,7 @@ addUserForm.addEventListener('submit', (e) => {
 
 main.addEventListener("click", (e) => {
     if (e.target.dataset.purpose == 'edit') {
-        const path = location.href.replace("home.html", "php/options.php");
+        const path = location.href.replace(".html", "").replace("home", "php/options.php");
         const new_message = prompt('Introduce el texto nuevo');
         console.log(new_message);
         // alert('Edit')
@@ -230,6 +233,11 @@ main.addEventListener("click", (e) => {
     }else if (e.target.dataset.purpose == 'delete') {
         const path = location.href.replace("home.html", "php/options.php");
         // console.dir(e.target.parentElement.previousSibling.textContent);
+
+        // const thinkAuthor = e.target.parentElement.parentElement.previousSibling.firstChild.children[1].firstChild.textContent;
+        // if (userData.author != thinkAuthor) {
+        //     throw new Error ("User doesn't have enough permissions")
+        // }
         fetch(path, {
             method: "POST",
             body: JSON.stringify({
@@ -253,7 +261,6 @@ main.addEventListener("click", (e) => {
         })
         .catch((err) => {
             alert("Error inesperado al borrar mensaje");
-            console.log(err);
         });
     }
 });

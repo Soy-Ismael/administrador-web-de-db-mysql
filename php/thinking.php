@@ -3,39 +3,30 @@ header('Content-Type: application/json');
 
 require_once 'conection.php';
 
-if (isset($_GET['oneline']) && isset($_GET['id'])) {
+if (isset($_GET['oneline'])) {
     $one_line = htmlspecialchars($_GET['oneline']);
-    $id = htmlspecialchars($_GET['id']);
     // isset se utiliza para comprobar que si se hayan recibidio datos, útil para evitar errores de variables vacias o indefinidas
     // echo "Received parameters: param1 = $one_line";
 }
 
-if(empty($id)){
-    echo json_encode([
-        'status' => 'error',
-        'ok' => false,
-        'code' => 401,
-        'message' => "Invalid request",
-        'data' => null,
-        'errors' => ['Empty date'],
-    ]);
-    exit;
-}
-
-// $stmt = $db->prepare("SELECT `user` FROM `credentials` WHERE `id` = ?");
-// $stmt->bind_param("s", $id);
-// $stmt->execute();
-// $result = $stmt->get_result();
-// $row = $result->fetch_assoc();
-// echo json_encode(["resultado" => $result]);
-
-
+// if(empty($id)){
+//     echo json_encode([
+//         'status' => 'error',
+//         'ok' => false,
+//         'code' => 401,
+//         'message' => "Invalid request",
+//         'data' => null,
+//         'errors' => ['Empty date'],
+//     ]);
+//     exit;
+// }
 
 if ($one_line == "true"){
     // $query = "SELECT author, thinking, DATE_FORMAT(date, '%Y-%m-%d %a %h:%i:%s %p') AS new_date FROM `notes` ORDER BY date DESC LIMIT 1;";
-    $query = "SELECT author, thinking, DATE_FORMAT(date, '%Y-%m-%d %a %h:%i %p') AS new_date FROM `notes` ORDER BY date DESC LIMIT 1;";
+    $query = "SELECT author, thinking, DATE_FORMAT(date, '%Y-%m-%d %a %h:%i %p') AS new_date, `user_color` FROM `notes` INNER JOIN `credentials` ON `author` = `name` ORDER BY date DESC LIMIT 1;";
 } else{
-    $query = "SELECT author, thinking, DATE_FORMAT(date, '%Y-%m-%d %a %h:%i %p') AS new_date FROM `notes`;";
+    // $query = "SELECT author, thinking, DATE_FORMAT(date, '%Y-%m-%d %a %h:%i %p') AS new_date FROM `notes`;";
+    $query = "SELECT `author`, `thinking`, DATE_FORMAT(`date`, '%Y-%m-%d %a %h:%i %p') AS new_date, `user_color` FROM `notes` INNER JOIN `credentials` ON `author` = `name`;";
 }
 
 // Seleccionar todo, pero dale formato a la fecha y solo muestrame que dia fue, no la hora (a pesar de guardar esos datos)
@@ -49,7 +40,8 @@ foreach ($filas as $fila) {
     $data[] = [
         "author" => $fila['author'],
         "thinking" => $fila['thinking'],
-        "date" => $fila['new_date']
+        "date" => $fila['new_date'],
+        "user_color" => $fila['user_color'],
     ];
 }
 

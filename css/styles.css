@@ -117,9 +117,7 @@
     border-radius: 13px;
     min-height: calc(100% + 25px);
     padding: 3px 18px;
-    /* margin: 3px 18px; */
     box-sizing: border-box;
-    /* margin: 28px 0; */
     margin: 8px 0 28px 0;
     position: relative;
 }
@@ -130,7 +128,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* align-items: start; */
     box-sizing: border-box;
     padding: 0 24px;
     color: #ccc;
@@ -143,6 +140,7 @@
 
 .date{
     font-size: 12px;
+    margin: 0;
 }
 
 .paragraph{
@@ -163,11 +161,10 @@
 
 /* Login Form */
 .login{
-    /* max-width: 560px; */
-    width: 100%;
-    height: 100%;
+    min-width: 320px;
+    width: 320px;
     max-height: 390px;
-    /* min-height: 360px; */
+    min-height: 460px;
     border-radius: 13px;
     background-color: var(--color2);
     display: flex;
@@ -177,12 +174,15 @@
 }
 
 .main--login{
-    width: 320px;
-    min-height: 460px;
-    height: 480px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.form__login__container{
+    display: grid;
+    place-items: center;
 }
 
 .login__title{
@@ -194,15 +194,13 @@
     height: 100px;
     border-radius: 50%;
     background-color: var(--acent);
-    display: grid;
-    place-items: center;
     color: #333;
+    text-align: center;
+    line-height: 127px;
 }
 
 .fa-user-tie{
-    font-size: 3em;
-    width: 36px;
-    height: 36px;
+    font-size: 3.4em;
 }
 
 .login__input{
@@ -222,7 +220,6 @@
 .credentials{
     display: flex;
     gap: 28px;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -230,6 +227,22 @@
 
 .login__input:hover{
     border: 1px solid var(--acent);
+}
+
+input[type="color"] {
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+input[type="color"]:focus+.color-picker-custom {
+    box-shadow: 0 0 0 2px #5b9dd9;
 }
 
 .login__submit{
@@ -337,7 +350,8 @@
 .user__icon{
     width: 40px;
     height: 40px;
-    background-color: #878080;
+    /* background-color: #878080; */
+    /* background-color: #1919196e; */
     border-radius: 50%;
     display: grid;
     place-items: center;
@@ -360,7 +374,8 @@
 }
 
 /* Options */
-.options{
+[data-permissions="true"]{
+/* .options{ */
     /* display: none; */
     /* opacity: 1; */
     position: absolute;
@@ -383,7 +398,7 @@
     transition: opacity 400ms, transform 350ms;
 }
 
-.options::before{
+[data-permissions="true"]::before{
     content: '';
     position: absolute;
     /* top: 8px; */
@@ -393,6 +408,10 @@
     border: 12px solid transparent;
     border-right: 12px solid var(--bg-color);
     /* border-radius: 5px; */
+}
+
+[data-permissions="false"]{
+    display: none;
 }
 
 .fa-pen, .fa-trash-can{
@@ -416,7 +435,7 @@
     transform: scale(1.3,1.3);
 }
 
-.think:hover .options{
+.think:hover [data-permissions="true"]{
     opacity: 1;
     transform: translateX(0);
 }
